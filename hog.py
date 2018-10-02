@@ -129,6 +129,18 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    while score0 < goal and score1 < goal:
+        if other(player) == 1:
+            score0 += take_turn(strategy0(score0, score1), score1, dice)
+            player = 1
+        else:
+            score1 += take_turn(strategy1(score1, score0), score0, dice)
+            player = 0
+        if is_swap(score0, score1):
+            scoret = score1
+            score1 = score0
+            score0 = scoret
+
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
@@ -371,7 +383,7 @@ def run(*args):
 def split_score(score):
     """Split score into its tens and units. Returns an array where units are [0], tens [1]. 
     """
-    assert score < 100, 'The game should be over.'
+
     split = []
     split.append((score // 10) % 10)    # tens digit
     split.append(score % 10)         # units digit
