@@ -43,10 +43,8 @@ def free_bacon(score):
     assert score < 100, 'The game should be over.'
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
-
-    x = (score // 10) % 10    # tens digit
-    y = (score % 10)          # units digit
-    bacon = (2 * x) - y
+    score_split = split_score(score)
+    bacon = (2 * score_split[0]) - score_split[1]
     if (1 < bacon): 
         return bacon
     else: 
@@ -85,6 +83,13 @@ def is_swap(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    player_split = split_score(player_score)
+    player_diff = abs(player_split[0] - player_split[1])
+
+    opponent_split = split_score(opponent_score)
+    opponent_diff = abs(opponent_split[0] - opponent_split[1])
+
+    return player_diff == opponent_diff
     # END PROBLEM 4
 
 
@@ -356,3 +361,18 @@ def run(*args):
 
     if args.run_experiments:
         run_experiments()
+
+##########################
+# Custom Helper Functions #
+##########################
+
+# Author: JPK
+
+def split_score(score):
+    """Split score into its tens and units. Returns an array where units are [0], tens [1]. 
+    """
+    assert score < 100, 'The game should be over.'
+    split = []
+    split.append((score // 10) % 10)    # tens digit
+    split.append(score % 10)         # units digit
+    return split
