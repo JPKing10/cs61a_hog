@@ -36,6 +36,7 @@ def roll_dice(num_rolls, dice=six_sided):
 
 def free_bacon(score):
     """Return the points scored from rolling 0 dice (Free Bacon).
+    Points scored = 2 * tens - units
 
     score:  The opponent's current score.
     """
@@ -43,16 +44,13 @@ def free_bacon(score):
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
 
-    if score < 10:
+    x = (score // 10) % 10    # tens digit
+    y = (score % 10)          # units digit
+    bacon = (2 * x) - y
+    if (1 < bacon): 
+        return bacon
+    else: 
         return 1
-    else:
-        x = (score // 10) % 10    # first digit
-        y = (score % 10)          # second digit
-        bacon = (2 * x) - y
-        if (bacon > 1): 
-            return bacon
-        else: 
-            return 1
 
     # END PROBLEM 2
 
