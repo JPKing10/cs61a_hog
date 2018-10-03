@@ -129,6 +129,7 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    commentator = say
     while score0 < goal and score1 < goal:
         if other(player) == 1:
             score0 += take_turn(strategy0(score0, score1), score1, dice)
@@ -140,6 +141,7 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
             scoret = score1
             score1 = score0
             score0 = scoret
+        commentator = commentator(score0, score1)
 
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
