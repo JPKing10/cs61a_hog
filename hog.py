@@ -300,12 +300,12 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
     num_dice = 0
-    score = 0
-    turn = make_averaged(roll_dice, num_samples)
+    top_score = 0
+    take_turn = make_averaged(roll_dice, num_samples)
     for i in range(1, 11):
-        turn_average = turn(i, dice)
-        if score < turn_average:
-            score = turn_average
+        turn_average = take_turn(i, dice)
+        if top_score < turn_average:
+            top_score = turn_average
             num_dice = i
     return num_dice
 
