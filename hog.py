@@ -308,10 +308,6 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
             top_score = turn_average
             num_dice = i
     return num_dice
-
-
-
-
     # END PROBLEM 9
 
 
@@ -360,7 +356,11 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 4  # Replace this statement
+    bacon_score = free_bacon(opponent_score)
+    if margin <= bacon_score:
+        return 0
+    else: 
+        return num_rolls
     # END PROBLEM 10
 
 
@@ -415,7 +415,7 @@ def run(*args):
 # Author: JPK
 
 def split_score(score):
-    """Split score into its tens and units. Returns an array where units are [0], tens [1]. 
+    """Split score into its tens and units. Returns an array where tens are [0], units [1]. 
     """
 
     split = []
